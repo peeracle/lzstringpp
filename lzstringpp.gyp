@@ -31,7 +31,6 @@
       'sources': [
         'LZString.cc',
         'LZString.h',
-        'LZStringInterface.h',
       ]
     },
   ],
