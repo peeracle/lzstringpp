@@ -20,9 +20,6 @@
 # SOFTWARE.
 
 {
-  'includes': [
-    '../../build/common.gypi'
-  ],
   'targets': [
     {
       'target_name': 'lzstringpp',
@@ -33,21 +30,15 @@
         'LZString.h',
       ]
     },
-  ],
-  'conditions': [
-    ['build_tests == 1', {
-      'targets': [
-        {
-          'target_name': 'lzstringpp_unittest',
-          'type': 'executable',
-          'dependencies': [
-            '<(DEPTH)/test/test.gyp:peeracle_tests_utils',
-          ],
-          'sources': [
-            'LZString_unittest.cc',
-          ],
-        },
+    {
+      'target_name': 'lzstringpp_unittest',
+      'type': 'executable',
+      'dependencies': [
+        '<(DEPTH)/test/test.gyp:peeracle_tests_utils',
       ],
-    }],
+      'sources': [
+        'LZString_unittest.cc',
+      ],
+    },
   ],
 }

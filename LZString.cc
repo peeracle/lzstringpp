@@ -20,4 +20,4 @@
  * SOFTWARE.
  */
 
-#include "third_party/lzstringpp/LZString.h"
+#include "LZString.h"

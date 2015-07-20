@@ -20,8 +20,8 @@
  * SOFTWARE.
  */
 
-#include "third_party/lzstringpp/LZString.h"
-#include "third_party/googletest/gtest/include/gtest/gtest.h"
+#include "LZString.h"
+#include "gtest/gtest.h"
 
 class LZStringTest : public testing::Test {
  protected:
