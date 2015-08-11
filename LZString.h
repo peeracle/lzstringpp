@@ -24,6 +24,8 @@
 #define LZSTRING_H_
 
 class LZString {
+ public:
+  LZString();
 };
 
 #endif  // LZSTRING_H_

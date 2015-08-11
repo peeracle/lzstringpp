@@ -20,6 +20,9 @@
 # SOFTWARE.
 
 {
+  'includes': [
+    '../../build/common.gypi'
+  ],
   'targets': [
     {
       'target_name': 'lzstringpp',
@@ -30,15 +33,58 @@
         'LZString.h',
       ]
     },
-    {
-      'target_name': 'lzstringpp_unittest',
-      'type': 'executable',
-      'dependencies': [
-        '<(DEPTH)/test/test.gyp:peeracle_tests_utils',
+  ],
+  'conditions': [
+    ['build_tests == 1', {
+      'targets': [
+        {
+          'target_name': 'lzstringpp_unittest',
+          'type': '<(gtest_target_type)',
+          'dependencies': [
+            '<(DEPTH)/test/test.gyp:peeracle_tests_utils',
+          ],
+          'conditions': [
+            ['OS=="android"', {
+              'dependencies': [
+                '<(webrtc_depth)/testing/android/native_test.gyp:native_test_native_code',
+              ],
+            }],
+          ],
+          'sources': [
+            'LZString_unittest.cc',
+          ],
+        },
       ],
-      'sources': [
-        'LZString_unittest.cc',
+      'conditions': [
+        ['OS=="android"', {
+          'targets': [
+            {
+              'target_name': 'lzstringpp_apk_target',
+              'type': 'none',
+              'dependencies': [
+                '<(apk_tests_path):lzstringpp_unittest_apk',
+              ],
+            },
+          ],
+        }],
+        ['test_isolation_mode != "noop"', {
+          'targets': [
+            {
+              'target_name': 'lzstringpp_unittest_run',
+              'type': 'none',
+              'dependencies': [
+                'lzstringpp_unittest',
+              ],
+              'includes': [
+                '../../build/isolate.gypi',
+              ],
+              'sources': [
+                'lzstringpp_unittest.isolate',
+              ],
+            },
+          ],
+        }]
       ],
-    },
+    }],
   ],
 }

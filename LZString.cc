@@ -20,4 +20,7 @@
  * SOFTWARE.
  */
 
-#include "LZString.h"
+#include "third_party/lzstringpp/LZString.h"
+
+LZString::LZString() {
+}
